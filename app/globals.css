@@ -128,3 +128,32 @@
     @apply font-sans;
   }
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #print-receipt,
+  #print-receipt * {
+    visibility: visible;
+  }
+
+  #print-receipt {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90mm;
+    height: 90mm;
+    margin: 0;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0;
+    padding: 6mm;
+  }
+
+  @page {
+    size: 90mm 90mm;
+    margin: 0;
+  }
+}
