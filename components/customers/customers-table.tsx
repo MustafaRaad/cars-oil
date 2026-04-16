@@ -21,7 +21,7 @@ function formatDate(value?: string) {
   if (!value) return "-";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "-";
-  return date.toLocaleDateString();
+  return date.toLocaleDateString("ar-EG");
 }
 
 export function CustomersTable({ customers }: CustomersTableProps) {
@@ -29,12 +29,12 @@ export function CustomersTable({ customers }: CustomersTableProps) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Name</TableHead>
-          <TableHead>Phone</TableHead>
-          <TableHead>Car Type</TableHead>
-          <TableHead>Total Visits</TableHead>
-          <TableHead>Last Visit Date</TableHead>
-          <TableHead className="text-right">Actions</TableHead>
+          <TableHead>الاسم</TableHead>
+          <TableHead>الهاتف</TableHead>
+          <TableHead>نوع السيارة</TableHead>
+          <TableHead>عدد الزيارات</TableHead>
+          <TableHead>آخر زيارة</TableHead>
+          <TableHead className="text-left">الإجراءات</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -50,9 +50,9 @@ export function CustomersTable({ customers }: CustomersTableProps) {
                 <Badge variant="secondary">{customer.history.length}</Badge>
               </TableCell>
               <TableCell>{formatDate(lastVisit?.date)}</TableCell>
-              <TableCell className="text-right">
+              <TableCell className="text-left">
                 <Button asChild variant="outline" size="sm">
-                  <Link href={`/dashboard/customers/${customer.id}`}>View / Edit</Link>
+                  <Link href={`/dashboard/customers/${customer.id}`}>عرض / تعديل</Link>
                 </Button>
               </TableCell>
             </TableRow>

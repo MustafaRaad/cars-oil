@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Cairo, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/navbar";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  variable: "--font-sans",
 });
 
 const geistMono = Geist_Mono({
@@ -17,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cars Oil Dashboard",
-  description: "Customers management module",
+  title: "شركة الأسد لتجارة الزيوت والفلاتر",
+  description: "لوحة إدارة العملاء والخدمات",
 };
 
 export default function RootLayout({
@@ -28,8 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
+      lang="ar"
+      dir="rtl"
+      className={cn("h-full", "antialiased", geistMono.variable, "font-sans", cairo.variable)}
     >
       <body className="min-h-full flex flex-col">
         <Navbar />

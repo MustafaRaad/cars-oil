@@ -32,7 +32,7 @@ export function CustomerForm({
     setError("");
 
     if (!name.trim() || !phone.trim()) {
-      setError("Name and phone are required.");
+      setError("الاسم ورقم الهاتف مطلوبان.");
       return;
     }
 
@@ -41,7 +41,7 @@ export function CustomerForm({
       await onSubmit({ name, phone, carType });
     } catch (submitError) {
       const message =
-        submitError instanceof Error ? submitError.message : "Unable to save customer.";
+        submitError instanceof Error ? submitError.message : "تعذر حفظ بيانات العميل.";
       setError(message);
     } finally {
       setIsSubmitting(false);
@@ -52,44 +52,45 @@ export function CustomerForm({
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
         <label htmlFor="name" className="text-sm font-medium">
-          Name
+          اسم العميل
         </label>
         <Input
           id="name"
           value={name}
           onChange={(event) => setName(event.target.value)}
-          placeholder="Customer name"
+          placeholder="مثال: محمد أحمد"
         />
       </div>
 
       <div className="space-y-2">
         <label htmlFor="phone" className="text-sm font-medium">
-          Phone
+          رقم الهاتف
         </label>
         <Input
           id="phone"
           value={phone}
           onChange={(event) => setPhone(event.target.value)}
-          placeholder="e.g. 01012345678"
+          placeholder="مثال: 01012345678"
+          dir="ltr"
         />
       </div>
 
       <div className="space-y-2">
         <label htmlFor="carType" className="text-sm font-medium">
-          Car Type
+          نوع السيارة
         </label>
         <Input
           id="carType"
           value={carType}
           onChange={(event) => setCarType(event.target.value)}
-          placeholder="e.g. Toyota Corolla"
+          placeholder="مثال: تويوتا كورولا"
         />
       </div>
 
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
 
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Saving..." : submitLabel}
+        {isSubmitting ? "جارٍ الحفظ..." : submitLabel}
       </Button>
     </form>
   );

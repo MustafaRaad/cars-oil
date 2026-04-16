@@ -22,7 +22,7 @@ export default function CustomerDetailsPage({ params }: CustomerDetailsPageProps
     const updated = updateCustomer(id, values);
     setCustomer(updated);
     setIsEditing(false);
-    setMessage("Customer updated successfully.");
+    setMessage("تم تحديث بيانات العميل بنجاح.");
   };
 
   if (!customer) {
@@ -30,11 +30,11 @@ export default function CustomerDetailsPage({ params }: CustomerDetailsPageProps
       <div className="mx-auto w-full max-w-3xl p-6">
         <Card>
           <CardHeader>
-            <CardTitle>Customer not found</CardTitle>
+            <CardTitle>العميل غير موجود</CardTitle>
           </CardHeader>
           <CardContent>
             <Button asChild>
-              <Link href="/dashboard/customers">Back to Customers</Link>
+              <Link href="/dashboard/customers">العودة إلى العملاء</Link>
             </Button>
           </CardContent>
         </Card>
@@ -46,13 +46,13 @@ export default function CustomerDetailsPage({ params }: CustomerDetailsPageProps
     <div className="mx-auto w-full max-w-5xl space-y-6 p-6">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between gap-3">
-          <CardTitle>Customer Details</CardTitle>
+          <CardTitle>تفاصيل العميل</CardTitle>
           <div className="flex gap-2">
             <Button asChild variant="outline">
-              <Link href="/dashboard/customers">Back</Link>
+              <Link href="/dashboard/customers">رجوع</Link>
             </Button>
             <Button variant={isEditing ? "secondary" : "default"} onClick={() => setIsEditing((v) => !v)}>
-              {isEditing ? "Cancel Edit" : "Edit Customer"}
+              {isEditing ? "إلغاء التعديل" : "تعديل العميل"}
             </Button>
           </div>
         </CardHeader>
@@ -66,21 +66,21 @@ export default function CustomerDetailsPage({ params }: CustomerDetailsPageProps
                 phone: customer.phone,
                 carType: customer.carType || "",
               }}
-              submitLabel="Save Changes"
+              submitLabel="حفظ التغييرات"
               onSubmit={handleSave}
             />
           ) : (
             <div className="grid gap-4 sm:grid-cols-3">
               <div>
-                <p className="text-sm text-muted-foreground">Name</p>
+                <p className="text-sm text-muted-foreground">الاسم</p>
                 <p className="font-medium">{customer.name}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Phone</p>
+                <p className="text-sm text-muted-foreground">الهاتف</p>
                 <p className="font-medium">{customer.phone}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Car Type</p>
+                <p className="text-sm text-muted-foreground">نوع السيارة</p>
                 <p className="font-medium">{customer.carType || "-"}</p>
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function CustomerDetailsPage({ params }: CustomerDetailsPageProps
 
       <Card>
         <CardHeader>
-          <CardTitle>Service History</CardTitle>
+          <CardTitle>سجل الخدمات</CardTitle>
         </CardHeader>
         <CardContent>
           <HistoryTable history={customer.history} />

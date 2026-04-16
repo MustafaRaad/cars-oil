@@ -10,7 +10,7 @@ export function Navbar() {
             />
           </div>
           <span className="text-base font-semibold tracking-wide sm:text-lg">
-            Cars Oil
+            شركة الأسد لتجارة الزيوت والفلاتر
           </span>
         </div>
       </div>

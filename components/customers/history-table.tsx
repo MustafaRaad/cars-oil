@@ -17,23 +17,23 @@ type HistoryTableProps = {
 function formatDate(value: string) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "-";
-  return date.toLocaleDateString();
+  return date.toLocaleDateString("ar-EG");
 }
 
 export function HistoryTable({ history }: HistoryTableProps) {
   if (history.length === 0) {
-    return <p className="text-sm text-muted-foreground">No service history yet.</p>;
+    return <p className="text-sm text-muted-foreground">لا يوجد سجل خدمات حتى الآن.</p>;
   }
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Date</TableHead>
-          <TableHead>Mileage</TableHead>
-          <TableHead>Oil Type</TableHead>
-          <TableHead>Technician</TableHead>
-          <TableHead>Notes</TableHead>
+          <TableHead>التاريخ</TableHead>
+          <TableHead>العداد</TableHead>
+          <TableHead>نوع الزيت</TableHead>
+          <TableHead>الفني</TableHead>
+          <TableHead>الملاحظات</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

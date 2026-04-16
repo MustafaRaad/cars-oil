@@ -36,11 +36,11 @@ export default function CustomersPage() {
       <Card>
         <CardHeader className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <CardTitle>Customers</CardTitle>
-            <p className="mt-1 text-sm text-muted-foreground">Manage customer records.</p>
+            <CardTitle>العملاء</CardTitle>
+            <p className="mt-1 text-sm text-muted-foreground">إدارة بيانات العملاء وسجل خدماتهم.</p>
           </div>
           <Button asChild>
-            <Link href="/dashboard/customers/create">Add Visit</Link>
+            <Link href="/dashboard/customers/create">إضافة خدمة</Link>
           </Button>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -50,14 +50,14 @@ export default function CustomersPage() {
               setSearch(event.target.value);
               setPage(1);
             }}
-            placeholder="Search by name or phone..."
+            placeholder="ابحث بالاسم أو رقم الهاتف..."
           />
 
           {filtered.length === 0 ? (
             <div className="rounded-lg border border-dashed p-8 text-center">
-              <p className="font-medium">No customers found.</p>
+              <p className="font-medium">لا يوجد عملاء مطابقون.</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                Try another search or create a new customer.
+                جرّب بحثاً مختلفاً أو أضف خدمة لعميل جديد.
               </p>
             </div>
           ) : (
@@ -66,7 +66,7 @@ export default function CustomersPage() {
               {totalPages > 1 ? (
                 <div className="flex items-center justify-between">
                   <p className="text-sm text-muted-foreground">
-                    Page {safePage} of {totalPages}
+                    الصفحة {safePage} من {totalPages}
                   </p>
                   <div className="flex gap-2">
                     <Button
@@ -75,7 +75,7 @@ export default function CustomersPage() {
                       disabled={safePage === 1}
                       onClick={() => setPage((current) => Math.max(1, current - 1))}
                     >
-                      Previous
+                      السابق
                     </Button>
                     <Button
                       variant="outline"
@@ -83,7 +83,7 @@ export default function CustomersPage() {
                       disabled={safePage === totalPages}
                       onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
                     >
-                      Next
+                      التالي
                     </Button>
                   </div>
                 </div>

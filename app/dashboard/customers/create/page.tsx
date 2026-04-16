@@ -40,12 +40,14 @@ export default function CreateCustomerPage() {
 
   return (
     <div className="mx-auto w-full max-w-3xl p-6">
+      <div className="mb-4">
+        <Button asChild variant="outline">
+          <Link href="/dashboard/customers">العودة إلى قائمة الزبائن</Link>
+        </Button>
+      </div>
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between gap-3">
+        <CardHeader>
           <CardTitle>تسجيل عملية خدمة</CardTitle>
-          <Button asChild variant="outline">
-            <Link href="/dashboard/customers">العودة إلى قائمة الزبائن</Link>
-          </Button>
         </CardHeader>
         <CardContent className="space-y-4">
           {successMessage ? <p className="text-sm text-green-600">{successMessage}</p> : null}

@@ -4,6 +4,17 @@ import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+const MOCK_OIL_TYPES = [
+  "5W-30 تخليقي",
+  "5W-40 تخليقي",
+  "10W-40 شبه تخليقي",
+  "10W-30 معدني",
+  "0W-20 تخليقي بالكامل",
+  "0W-30 تخليقي بالكامل",
+  "15W-40 ديزل",
+  "ATF ديكسترون III",
+];
+
 export type AddVisitFormValues = {
   name: string;
   phone: string;
@@ -122,14 +133,14 @@ export function AddVisitForm({ onSubmit, submitLabel, existingCustomers }: AddVi
                   <button
                     key={`${suggestion.name}-${suggestion.phone}`}
                     type="button"
-                    className="w-full rounded-sm px-2 py-1.5 text-left text-sm hover:bg-muted"
+                    className="w-full rounded-sm px-2 py-1.5 text-right text-sm hover:bg-muted"
                     onMouseDown={(event) => {
                       event.preventDefault();
                       selectSuggestion(suggestion);
                     }}
                   >
                     <span className="font-medium">{suggestion.name}</span>
-                    <span className="ml-2 text-muted-foreground">{suggestion.phone}</span>
+                    <span className="me-2 text-muted-foreground">{suggestion.phone}</span>
                   </button>
                 ))}
               </div>
@@ -180,9 +191,15 @@ export function AddVisitForm({ onSubmit, submitLabel, existingCustomers }: AddVi
           </label>
           <Input
             id="oilType"
+            list="oil-types"
             value={values.oilType}
             onChange={(event) => updateField("oilType", event.target.value)}
           />
+          <datalist id="oil-types">
+            {MOCK_OIL_TYPES.map((oilType) => (
+              <option key={oilType} value={oilType} />
+            ))}
+          </datalist>
         </div>
 
         <div className="space-y-2">
@@ -207,7 +224,7 @@ export function AddVisitForm({ onSubmit, submitLabel, existingCustomers }: AddVi
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
 
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Saving..." : submitLabel}
+        {isSubmitting ? "جارٍ الحفظ..." : submitLabel}
       </Button>
     </form>
   );
