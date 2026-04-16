@@ -40,7 +40,7 @@ export default function CustomersPage() {
             <p className="mt-1 text-sm text-muted-foreground">Manage customer records.</p>
           </div>
           <Button asChild>
-            <Link href="/dashboard/customers/create">Create Customer</Link>
+            <Link href="/dashboard/customers/create">Add Visit</Link>
           </Button>
         </CardHeader>
         <CardContent className="space-y-4">

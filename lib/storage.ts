@@ -17,6 +17,16 @@ export type Customer = {
   history: Service[];
 };
 
+export type AddVisitInput = {
+  name: string;
+  phone: string;
+  carType?: string;
+  mileage: number;
+  oilType: string;
+  technician: string;
+  notes?: string;
+};
+
 const STORAGE_KEY = "customers";
 
 function canUseStorage() {
@@ -98,4 +108,47 @@ export function updateCustomer(
   customers[index] = updated;
   persistCustomers(customers);
   return updated;
+}
+
+export function addVisit(input: AddVisitInput): Customer {
+  const customers = getCustomers();
+
+  const normalizedPhone = input.phone.trim();
+  const normalizedName = input.name.trim();
+  const normalizedCarType = input.carType?.trim() || "";
+
+  const service: Service = {
+    id: crypto.randomUUID(),
+    date: new Date().toISOString(),
+    mileage: input.mileage,
+    oilType: input.oilType.trim(),
+    technician: input.technician.trim(),
+    notes: input.notes?.trim() || "",
+  };
+
+  const existingIndex = customers.findIndex((customer) => customer.phone.trim() === normalizedPhone);
+
+  if (existingIndex >= 0) {
+    const existing = customers[existingIndex];
+    const updated: Customer = {
+      ...existing,
+      name: normalizedName || existing.name,
+      carType: normalizedCarType || existing.carType || "",
+      history: [...existing.history, service],
+    };
+    customers[existingIndex] = updated;
+    persistCustomers(customers);
+    return updated;
+  }
+
+  const newCustomer: Customer = {
+    id: crypto.randomUUID(),
+    name: normalizedName,
+    phone: normalizedPhone,
+    carType: normalizedCarType,
+    history: [service],
+  };
+
+  persistCustomers([newCustomer, ...customers]);
+  return newCustomer;
 }
